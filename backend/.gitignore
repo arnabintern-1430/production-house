@@ -34,3 +34,10 @@ coverage/
 # OS specific files
 .DS_Store
 Thumbs.db
+node_modules/
+node_modules/
+.env
+dist/
+build/
+.DS_Store
+npm-debug.log
