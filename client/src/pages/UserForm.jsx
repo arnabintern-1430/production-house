@@ -43,7 +43,6 @@ const UserForm = () => {
     }
   };
 
-  // Verify OTP + register user
   const verifyOtp = async () => {
     try {
       if (!confirmationResult) {
