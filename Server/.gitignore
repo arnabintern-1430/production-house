@@ -16,9 +16,9 @@ pids
 *.pid.lock
 
 # Env files
-.env
-.env.local
-.env.*.local
+# .env
+# .env.local
+# .env.*.local
 
 # Build / dist
 dist/
@@ -36,7 +36,6 @@ coverage/
 Thumbs.db
 node_modules/
 node_modules/
-.env
 dist/
 build/
 .DS_Store
