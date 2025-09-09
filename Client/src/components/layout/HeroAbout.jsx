@@ -10,13 +10,13 @@ const HeroAbout = () => {
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
       <div className="relative z-10 max-w-4xl mx-auto px-6 animate-fade-in-up">
         <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold leading-tight">
-          We Don't Just Film.{' '}
+          We Don't Just Produce{' '}
           <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-            We Tell Stories.
+            Entertainment.
           </span>
         </h1>
         <p className="mt-6 text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto">
-          Inovix Studio is where creativity meets technology to produce visual content that captivates and inspires.
+          MS Entatiment Production House Pvt. Ltd. is where passion meets profession to create a platform for new talent.
         </p>
       </div>
     </section>

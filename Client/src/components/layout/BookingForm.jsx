@@ -1,141 +1,193 @@
-import React, { useState } from 'react';
-import { ChevronDown, Send, CheckCircle, ArrowRight, User, Mail, Phone, Calendar } from 'lucide-react';
-import CustomButton from '../ui/CustomButton';
+import React, { useState } from "react";
+import { CheckCircle, User, Mail, Phone } from "lucide-react";
+import { auth, RecaptchaVerifier, signInWithPhoneNumber } from "../../firebase";
+import PaymentButton from "./PaymentButton";
+import { toast } from "react-toastify";
 
 const BookingForm = () => {
-  // State for form inputs
-  const [formData, setFormData] = useState({
-    service: 'Portfolio Shoot',
-    name: '',
-    email: '',
-    mobile: '',
-    date: '',
-    otp: '',
-  });
-
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "" });
+  const [otp, setOtp] = useState("");
+  const [confirmationResult, setConfirmationResult] = useState(null);
   const [isOtpSent, setIsOtpSent] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  // Get today's date for the date picker minimum
-  const today = new Date().toISOString().split('T')[0];
-  const services = ['Portfolio Shoot', 'Event Organization', 'Model Booking', 'Training & Grooming'];
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-  
-  const selectService = (service) => {
-    setFormData({ ...formData, service });
-    setIsDropdownOpen(false);
-  };
-
-  // --- OTP Functions (Simulated Backend) ---
-  const handleSendOtp = async () => {
-    if (formData.mobile.length !== 10) {
-      alert("Please enter a valid 10-digit mobile number.");
-      return;
+  // Setup reCAPTCHA
+  const setupRecaptcha = () => {
+    if (!window.recaptchaVerifier) {
+      window.recaptchaVerifier = new RecaptchaVerifier(
+        auth,
+        "recaptcha-container",
+        { size: "invisible" }
+      );
     }
-    console.log(`Sending OTP to ${formData.mobile}...`);
-    alert(`An OTP has been sent to ${formData.mobile}.`);
-    setIsOtpSent(true);
   };
 
-  const handleVerifyOtp = async () => {
-    if (formData.otp.length !== 6) {
-        alert("Please enter a valid 6-digit OTP.");
+  // Send OTP
+  const sendOtp = async () => {
+    try {
+      if (formData.phone.length !== 10) {
+        toast.dismiss();
+        toast.error("Enter valid 10-digit number");
         return;
+      }
+      setupRecaptcha();
+      const appVerifier = window.recaptchaVerifier;
+
+      const phoneNumber = formData.phone.startsWith("+91")
+        ? formData.phone
+        : `+91${formData.phone}`;
+
+      const result = await signInWithPhoneNumber(
+        auth,
+        phoneNumber,
+        appVerifier
+      );
+      setConfirmationResult(result);
+      setIsOtpSent(true);
+      toast.dismiss();
+      toast.success("OTP sent successfully!");
+    } catch (error) {
+      console.error("Error sending OTP:", error);
+      toast.dismiss();
+      toast.error("Failed to send OTP. Please check number.");
     }
-    console.log(`Verifying OTP ${formData.otp}...`);
-    alert("Mobile number verified successfully!");
-    setIsVerified(true);
-  };
-  
-  // --- Form Submission Function ---
-  const handleBookingSubmit = (e) => {
-    e.preventDefault();
-    if (!isVerified) {
-        alert("Please verify your mobile number before proceeding.");
-        return;
-    }
-    
-    console.log("Booking Data to be saved:", formData);
-    alert("Redirecting to the payment gateway...");
   };
 
+  // Verify OTP
+  const verifyOtp = async () => {
+    try {
+      if (!confirmationResult) {
+        toast.dismiss();
+        return toast.error("No OTP request found. Try again.");
+      }
+      if (otp.length !== 6) {
+        toast.dismiss();
+        return toast.error("Enter valid 6-digit OTP");
+      }
+
+      const result = await confirmationResult.confirm(otp);
+      const idToken = await result.user.getIdToken();
+
+      const res = await fetch("http://localhost:5000/api/users/cretateUser", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, idToken }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setIsVerified(true);
+        toast.dismiss();
+        toast.success("User registered & verified!");
+        console.log("Saved user:", data.user);
+      } else {
+        toast.dismiss();
+        toast.error(data.message || "Registration failed!");
+      }
+    } catch (error) {
+      console.error("Error verifying OTP:", error);
+      toast.dismiss();
+      toast.error("Invalid OTP. Try again.");
+    }
+  };
 
   return (
-    <section className="py-20 sm:py-32 -mt-20">
-      <div className="max-w-2xl mx-auto px-6">
-        <div className="bg-[#111827]/80 backdrop-blur-sm border border-gray-800 rounded-2xl shadow-2xl shadow-blue-500/10 overflow-hidden">
-            <div className="p-8 sm:p-12">
-              <h3 className="text-3xl font-bold text-white mb-8 text-center">Book Your Session</h3>
-              <form onSubmit={handleBookingSubmit} className="space-y-6">
-                
-                {/* Custom Service Dropdown */}
-                <div className="relative">
-                    <label className="block text-sm font-medium text-gray-400 mb-2">Select Service</label>
-                    <button type="button" onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="w-full flex justify-between items-center bg-gray-900 text-white border border-gray-700 rounded-lg px-4 py-3 text-left focus:outline-none focus:border-blue-500 transition-colors">
-                        <span>{formData.service}</span>
-                        <ChevronDown className={`w-5 h-5 text-gray-500 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`} />
-                    </button>
-                    {isDropdownOpen && (
-                        <div className="absolute z-20 w-full mt-2 bg-[#1c2436] border border-gray-700 rounded-lg shadow-lg animate-fade-in-down">
-                            {services.map(service => (
-                                <div key={service} onClick={() => selectService(service)} className="px-4 py-3 text-white hover:bg-blue-500/10 cursor-pointer transition-colors">
-                                    {service}
-                                </div>
-                            ))}
-                        </div>
-                    )}
-                </div>
+    <section className="pt-4 sm:pt-6 pb-12 sm:pb-20 flex justify-center items-center">
+      <div className="w-full max-w-lg md:max-w-2xl mx-auto px-4 sm:px-6">
+        <div className="bg-[#111827]/90 backdrop-blur-md border border-gray-800 rounded-2xl sm:rounded-3xl shadow-2xl shadow-blue-500/20 overflow-hidden">
+          <div className="p-4 sm:p-8 md:p-12">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mb-6 sm:mb-10 text-center leading-snug">
+              Book Your Session
+            </h3>
 
-                {/* Name, Email, Mobile with Icons */}
-                <div className="relative">
-                    <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
-                    <input type="text" name="name" value={formData.name} onChange={handleInputChange} required placeholder="Your Name" className="w-full bg-gray-900 text-white border border-gray-700 rounded-lg pl-12 pr-4 py-3 focus:outline-none focus:border-blue-500 transition-colors"/>
-                </div>
-                <div className="relative">
-                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
-                    <input type="email" name="email" value={formData.email} onChange={handleInputChange} required placeholder="Your Email" className="w-full bg-gray-900 text-white border border-gray-700 rounded-lg pl-12 pr-4 py-3 focus:outline-none focus:border-blue-500 transition-colors"/>
-                </div>
-                 <div className="relative">
-                    <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
-                    <input type="tel" name="mobile" value={formData.mobile} onChange={handleInputChange} required placeholder="10-digit mobile number" className="w-full bg-gray-900 text-white border border-gray-700 rounded-lg pl-12 pr-4 py-3 focus:outline-none focus:border-blue-500 transition-colors" disabled={isOtpSent} />
-                    {!isVerified && (
-                        <CustomButton type="button" variant="secondary" onClick={handleSendOtp} disabled={isOtpSent} className="absolute right-2 top-1/2 -translate-y-1/2 !py-2 !px-3 !text-sm">
-                            {isOtpSent ? 'Sent' : 'Send OTP'}
-                        </CustomButton>
-                    )}
-                    {isVerified && <CheckCircle size={24} className="absolute right-3 top-1/2 -translate-y-1/2 text-green-500" />}
-                </div>
+            {/* Form */}
+            <div className="space-y-5 sm:space-y-6">
+              {/* Name */}
+              <div className="relative">
+                <User className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+                <input
+                  type="text"
+                  placeholder="Your Name"
+                  value={formData.name}
+                  onChange={(e) =>
+                    setFormData({ ...formData, name: e.target.value })
+                  }
+                  className="w-full bg-gray-900 text-white border border-gray-700 rounded-lg sm:rounded-xl pl-10 pr-4 py-3 sm:py-4 focus:outline-none focus:border-blue-500 text-base sm:text-lg"
+                />
+              </div>
 
-                {/* OTP Field */}
-                {isOtpSent && !isVerified && (
-                    <div className="relative animate-fade-in-up">
-                        <input type="text" name="otp" value={formData.otp} onChange={handleInputChange} required placeholder="6-digit OTP" className="w-full bg-gray-900 text-white border border-gray-700 rounded-lg pl-4 pr-24 py-3 focus:outline-none focus:border-blue-500 transition-colors"/>
-                        <CustomButton type="button" variant="secondary" onClick={handleVerifyOtp} className="absolute right-2 top-1/2 -translate-y-1/2 !py-2 !px-3 !text-sm">Verify</CustomButton>
-                    </div>
+              {/* Email */}
+              <div className="relative">
+                <Mail className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+                <input
+                  type="email"
+                  placeholder="Your Email"
+                  value={formData.email}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
+                  className="w-full bg-gray-900 text-white border border-gray-700 rounded-lg sm:rounded-xl pl-10 pr-4 py-3 sm:py-4 focus:outline-none focus:border-blue-500 text-base sm:text-lg"
+                />
+              </div>
+
+              {/* Phone */}
+              <div className="relative">
+                <Phone className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+                <input
+                  type="text"
+                  placeholder="10-digit phone number"
+                  value={formData.phone}
+                  onChange={(e) =>
+                    setFormData({ ...formData, phone: e.target.value })
+                  }
+                  className="w-full bg-gray-900 text-white border border-gray-700 rounded-lg sm:rounded-xl pl-10 pr-20 sm:pr-24 py-3 sm:py-4 focus:outline-none focus:border-blue-500 text-base sm:text-lg"
+                  disabled={isOtpSent}
+                />
+                {!isVerified && (
+                  <button
+                    onClick={sendOtp}
+                    disabled={isOtpSent}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-blue-600 hover:bg-blue-700 text-white rounded-md sm:rounded-lg px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm transition-colors"
+                  >
+                    {isOtpSent ? "Sent" : "Send OTP"}
+                  </button>
                 )}
-                
-                {/* Date Picker */}
-                <div className="relative">
-                    <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
-                    <input type="date" name="date" value={formData.date} onChange={handleInputChange} required min={today} className="w-full bg-gray-900 text-white border border-gray-700 rounded-lg pl-12 pr-4 py-3 focus:outline-none focus:border-blue-500 transition-colors"/>
-                </div>
+                {isVerified && (
+                  <CheckCircle
+                    size={22}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-green-500"
+                  />
+                )}
+              </div>
 
-                {/* Submit Button */}
-                <div className="pt-4">
-                    <CustomButton type="submit" variant="primary" className="w-full !py-4 !text-lg" disabled={!isVerified}>
-                        <div className="flex items-center justify-center gap-2">
-                           Proceed to Payment
-                           <ArrowRight size={20} />
-                        </div>
-                    </CustomButton>
+              {/* OTP Input */}
+              {isOtpSent && !isVerified && (
+                <div className="relative animate-fade-in-up">
+                  <input
+                    type="text"
+                    placeholder="Enter 6-digit OTP"
+                    value={otp}
+                    onChange={(e) => setOtp(e.target.value)}
+                    className="w-full bg-gray-900 text-white border border-gray-700 rounded-lg sm:rounded-xl pl-4 pr-20 sm:pr-24 py-3 sm:py-4 focus:outline-none focus:border-blue-500 text-base sm:text-lg"
+                  />
+                  <button
+                    onClick={verifyOtp}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-green-600 hover:bg-green-700 text-white rounded-md sm:rounded-lg px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm transition-colors"
+                  >
+                    Verify
+                  </button>
                 </div>
-              </form>
+              )}
+
+              {/* Submit Button */}
+              <div className="pt-4 sm:pt-6">
+                <PaymentButton amount={12000} disabled={!isVerified} />
+              </div>
             </div>
+
+            <div id="recaptcha-container"></div>
+          </div>
         </div>
       </div>
     </section>
@@ -143,4 +195,3 @@ const BookingForm = () => {
 };
 
 export default BookingForm;
-

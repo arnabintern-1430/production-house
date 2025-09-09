@@ -4,23 +4,23 @@ import { Lightbulb, ClipboardList, Film, Rocket } from 'lucide-react';
 const OurProcess = () => {
   const processSteps = [
     {
-      title: 'Concept & Strategy',
-      description: 'We collaborate to define your vision, goals, and create a comprehensive blueprint for success.',
+      title: 'Talent Discovery',
+      description: 'We actively seek out and identify promising new talent across various creative fields.',
       icon: <Lightbulb className="w-8 h-8 text-purple-400 transition-transform duration-300 group-hover:scale-110" />,
     },
     {
-      title: 'Pre-Production',
-      description: 'Every detail is planned, from scriptwriting and storyboarding to casting and location scouting.',
+      title: 'Training & Development',
+      description: 'Our experts provide professional training and guidance to nurture their skills and prepare them for the industry.',
       icon: <ClipboardList className="w-8 h-8 text-purple-400 transition-transform duration-300 group-hover:scale-110" />,
     },
     {
-      title: 'Filming & Production',
-      description: 'Our expert crew uses state-of-the-art equipment to capture stunning visuals and bring the story to life.',
+      title: 'Portfolio Creation',
+      description: 'We produce high-quality portfolios, music albums, and video content to professionally showcase their abilities.',
       icon: <Film className="w-8 h-8 text-purple-400 transition-transform duration-300 group-hover:scale-110" />,
     },
     {
-      title: 'Post-Production & Delivery',
-      description: 'We meticulously edit, color grade, and add effects to craft the final masterpiece, delivered on time.',
+      title: 'Industry Promotion',
+      description: 'We bridge the gap between emerging artists and professional opportunities, helping them launch and grow their careers.',
       icon: <Rocket className="w-8 h-8 text-purple-400 transition-transform duration-300 group-hover:scale-110" />,
     },
   ];
@@ -30,13 +30,13 @@ const OurProcess = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white">
-            How We Bring Ideas to{' '}
+            Our Talent{' '}
             <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-              Life
+              Ecosystem
             </span>
           </h2>
           <p className="mt-4 text-lg text-gray-400 max-w-2xl mx-auto">
-            Our streamlined process ensures a seamless journey from concept to final cut.
+            From discovering new talent to promoting them in the industry, our process is designed for artistic success.
           </p>
         </div>
         
@@ -65,4 +65,3 @@ const OurProcess = () => {
 };
 
 export default OurProcess;
-

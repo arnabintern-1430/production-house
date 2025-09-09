@@ -2,7 +2,7 @@ import React from 'react';
 
 const HeroBooking = () => {
   return (
-    <section className="relative h-[50vh] sm:h-[60vh] flex items-center justify-center text-center overflow-hidden">
+    <section className="relative h-[50vh] sm:h-[60vh] flex items-center justify-center text-center overflow-hidden mt-13">
       <div 
         className="absolute inset-0 bg-cover bg-center opacity-20" 
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop')" }}
