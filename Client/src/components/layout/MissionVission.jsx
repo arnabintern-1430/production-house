@@ -11,13 +11,13 @@ const MissionVission = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white">
-            Our Guiding{' '}
+            Our Core{' '}
             <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-              Principles
+              Purpose
             </span>
           </h2>
           <p className="mt-4 text-lg text-gray-400 max-w-2xl mx-auto">
-            These are the core beliefs that drive our creative process and define our commitment to excellence.
+            Our mission and vision guide every decision we make, from nurturing talent to creating groundbreaking content.
           </p>
         </div>
 
@@ -31,12 +31,14 @@ const MissionVission = () => {
               </div>
               <h3 className="text-3xl font-bold">Our Mission</h3>
             </div>
-            <p className="text-gray-400 text-lg leading-relaxed">
-              To transform powerful ideas into unforgettable visual stories that resonate with audiences and elevate brands through cinematic excellence.
-            </p>
+            <ul className="text-gray-400 text-lg leading-relaxed list-disc list-inside space-y-2">
+              <li>Empower aspiring artists by offering professional training, mentorship, and career opportunities.</li>
+              <li>Promote originality and creativity through quality music, films, and media content.</li>
+              <li>Build a trusted platform that connects fresh talent with the entertainment industry.</li>
+            </ul>
           </div>
 
-          {/* Vision Card - Removed md:mt-12 */}
+          {/* Vision Card */}
           <div className="group bg-[#111827]/80 backdrop-blur-sm border border-gray-800 p-8 rounded-2xl transition-all duration-300 hover:border-purple-500 hover:shadow-2xl hover:shadow-purple-500/20 hover:-translate-y-2">
             <div className="flex items-center gap-4 mb-4">
               <div className="bg-gray-900 p-4 rounded-full border-2 border-gray-700 group-hover:border-purple-500 transition-colors">
@@ -45,7 +47,7 @@ const MissionVission = () => {
               <h3 className="text-3xl font-bold">Our Vision</h3>
             </div>
             <p className="text-gray-400 text-lg leading-relaxed">
-              To be the leading creative partner for brands, pioneering new techniques in video production and setting the industry standard for innovation.
+              To become a leading production house in India, recognized for innovation, professionalism, and creative excellence. We aim to create a sustainable ecosystem where music, acting, and performing arts flourish, giving artists a global stage to showcase their talent.
             </p>
           </div>
         </div>
@@ -55,4 +57,3 @@ const MissionVission = () => {
 };
 
 export default MissionVission;
-

@@ -9,6 +9,10 @@ import Services from "./pages/Services";
 import Projects from "./pages/Projects";
 import Booking from "./pages/Booking";
 
+// ✅ react-toastify import
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
   const [count, setCount] = useState(0);
 
@@ -23,6 +27,16 @@ function App() {
         <Route path="/booknow" element={<Booking />} />
       </Routes>
       <Footer />
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        pauseOnHover
+        draggable
+        theme="dark"
+      />
     </div>
   );
 }

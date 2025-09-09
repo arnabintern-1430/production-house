@@ -38,11 +38,12 @@ const Header = () => {
         {/* Logo with brand name */}
         <button
           onClick={() => navigate("/")}
-          className="flex items-center space-x-2 cursor-pointer"
+          className="flex items-center space-x-0 cursor-pointer"
         >
-          <Clapperboard className="text-blue-500" size={32} />
+          {/* <Clapperboard className="text-blue-500" size={32} /> */}
+          <img src="/photos/ms_logo.png" className="w-12" alt="MS Entatiment" />
           <span className="text-white text-2xl md:text-3xl font-extrabold tracking-wide">
-            Inovix<span className="text-blue-500">Studio</span>
+            <span className="text-blue-500">MS</span> Entertainment
           </span>
         </button>
 
@@ -100,7 +101,7 @@ const Header = () => {
 
         {/* Mobile CTA Button */}
         <button
-          onClick={() => navigate("/book-now")}
+          onClick={() => navigate("/booknow")}
           className="mt-6 px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-full shadow-lg hover:opacity-90 transition cursor-pointer"
         >
           Book Now

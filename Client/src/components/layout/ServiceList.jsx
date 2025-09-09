@@ -1,8 +1,10 @@
 import React from 'react';
 import { Camera, CalendarDays, UserCheck, Sparkles, ArrowRight } from 'lucide-react';
 import CustomButton from '../ui/CustomButton';
+import { useAppContext } from "../../context/AppContext";
 
 const ServiceList = () => {
+  const { navigate } = useAppContext();
   const otherServices = [
     {
       title: 'Event Organization',
@@ -40,7 +42,7 @@ const ServiceList = () => {
               </p>
               <CustomButton 
                 variant="primary"
-                onClick={() => alert("Redirecting to Booking Page...")}
+                onClick={() => navigate("/booknow")}
                 className="!text-lg !py-4 !px-8"
               >
                 <div className="flex items-center justify-center gap-2">
