@@ -12,6 +12,7 @@ import Booking from "./pages/Booking";
 // ✅ react-toastify import
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ContactPage from "./pages/ContactPage";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -25,6 +26,7 @@ function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/booknow" element={<Booking />} />
+        <Route path="/contact" element={<ContactPage />} />
       </Routes>
       <Footer />
       <ToastContainer

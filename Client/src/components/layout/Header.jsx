@@ -41,7 +41,7 @@ const Header = () => {
           className="flex items-center space-x-0 cursor-pointer"
         >
           {/* <Clapperboard className="text-blue-500" size={32} /> */}
-          <img src="/photos/ms_logo.png" className="w-12" alt="MS Entatiment" />
+          <img src="/photos/ms_logo.png" className="w-15" alt="MS Entatiment" />
           <span className="text-white text-2xl md:text-3xl font-extrabold tracking-wide">
             <span className="text-blue-500">MS</span> Entertainment
           </span>
@@ -63,7 +63,7 @@ const Header = () => {
         {/* Desktop CTA Button */}
         <div className="hidden md:block">
           <button
-            onClick={() => navigate("/booknow")}
+            onClick={() => navigate("/contact")}
             className="cursor-pointer px-5 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium rounded-full shadow-lg hover:opacity-90 transition"
           >
             Book Now
@@ -101,7 +101,7 @@ const Header = () => {
 
         {/* Mobile CTA Button */}
         <button
-          onClick={() => navigate("/booknow")}
+          onClick={() => navigate("/contact")}
           className="mt-6 px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-full shadow-lg hover:opacity-90 transition cursor-pointer"
         >
           Book Now

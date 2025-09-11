@@ -1,7 +1,7 @@
 import React from 'react';
 import { Camera, CalendarDays, UserCheck, Sparkles, ArrowRight } from 'lucide-react';
 import CustomButton from '../ui/CustomButton';
-import { useAppContext } from "../../context/AppContext";
+import { useAppContext } from '../../context/AppContext';
 
 const ServiceList = () => {
   const { navigate } = useAppContext();
@@ -27,7 +27,6 @@ const ServiceList = () => {
     <section className="py-20 sm:py-32 bg-black">
       <div className="max-w-7xl mx-auto px-6">
         
-        {/* Featured Service: Portfolio Shoot */}
         <div className="relative bg-gradient-to-br from-[#111827] to-gray-900 p-8 sm:p-12 rounded-3xl border border-purple-500/50 shadow-2xl shadow-purple-500/20 mb-16 overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div className="relative z-10">
@@ -42,7 +41,7 @@ const ServiceList = () => {
               </p>
               <CustomButton 
                 variant="primary"
-                onClick={() => navigate("/booknow")}
+                onClick={() => navigate("/contact")}
                 className="!text-lg !py-4 !px-8"
               >
                 <div className="flex items-center justify-center gap-2">
@@ -52,17 +51,16 @@ const ServiceList = () => {
               </CustomButton>
             </div>
             <div className="hidden lg:block relative h-full min-h-[250px]">
-               <img src="https://images.unsplash.com/photo-1536293283170-b4604bbe272f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Portfolio Shoot" className="absolute inset-0 w-full h-full object-cover rounded-2xl opacity-20"/>
+               <img src="https://images.unsplash.com/photo-1536293283170-b4604bbe272f?q=80&w=1170&auto-format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Portfolio Shoot" className="absolute inset-0 w-full h-full object-cover rounded-2xl opacity-20"/>
             </div>
           </div>
         </div>
 
-        {/* Other Services */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {otherServices.map((service, index) => (
             <div
               key={index}
-              className="group relative bg-[#111827] p-8 rounded-2xl border border-gray-800 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-blue-500/10"
+              className="group relative bg-[#111827] p-8 rounded-2xl border border-gray-800 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-blue-500/10 flex flex-col"
             >
               <div className="relative z-10 flex flex-col h-full">
                 <div className="flex items-center gap-6 mb-6">
@@ -74,6 +72,15 @@ const ServiceList = () => {
                 <p className="text-gray-400 text-lg leading-relaxed flex-grow">
                   {service.description}
                 </p>
+                <div className="mt-auto pt-6">
+                    <CustomButton
+                        variant="secondary"
+                        onClick={() => navigate("/contact")}
+                        className="w-full !py-3"
+                    >
+                        Book Now
+                    </CustomButton>
+                </div>
               </div>
             </div>
           ))}
