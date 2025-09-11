@@ -1,0 +1,12 @@
+/* Font adding soon */
+
+@import "tailwindcss";
+
+*{
+    /* comming no problem */
+}
+
+@theme{
+    --color-primary: blue;
+    --color-primary-dull: red;
+}
