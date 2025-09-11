@@ -15,7 +15,6 @@ import "react-toastify/dist/ReactToastify.css";
 import ContactPage from "./pages/ContactPage";
 
 function App() {
-  const [count, setCount] = useState(0);
 
   return (
     <div>

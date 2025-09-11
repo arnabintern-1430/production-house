@@ -21,7 +21,7 @@ const AboutInfo = () => {
         </div>
         <div className="mt-12 text-lg leading-8 text-gray-300 space-y-6 text-left md:text-justify">
           <p>
-            MS Entatiment Production House Pvt. Ltd. is a premier media and
+            MS Entertainment Production House Private Limited  is a premier media and
             entertainment company committed to discovering, nurturing, and
             promoting new talent in the creative industry. With a strong focus
             on music production, talent training, and professional portfolio

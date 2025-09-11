@@ -43,7 +43,7 @@ const Header = () => {
           {/* <Clapperboard className="text-blue-500" size={32} /> */}
           <img src="/photos/ms_logo.png" className="w-15" alt="MS Entatiment" />
           <span className="text-white text-2xl md:text-3xl font-extrabold tracking-wide">
-            <span className="text-blue-500">MS</span> Entertainment
+            <span className="text-blue-500">MS</span> Entertainment 
           </span>
         </button>
 

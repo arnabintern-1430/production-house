@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import HeroHeader from "../components/layout/HeroHeader";
 import Testimonials from "../components/layout/Testimonials";
-import ContactForm from "../components/layout/ContactForm";
+
 import Footer from "../components/layout/Footer";
 import AboutInfo from "../components/layout/AboutInfo";
+import ContactForm from '../components/layout/ContactForm';
 
 const Home = () => {
   useEffect(() => {
