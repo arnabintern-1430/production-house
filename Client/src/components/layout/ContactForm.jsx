@@ -97,7 +97,7 @@ const ContactForm = () => {
                   <div>
                     <p className="text-gray-400 text-sm">Email</p>
                     <p className="text-white font-semibold">
-                      contact@inovix.studio
+                      msentertainment107@gmail.com
                     </p>
                   </div>
                 </a>
@@ -110,7 +110,7 @@ const ContactForm = () => {
                   </div>
                   <div>
                     <p className="text-gray-400 text-sm">Phone</p>
-                    <p className="text-white font-semibold">+91 4567890125</p>
+                    <p className="text-white font-semibold">+91 9831896104</p>
                   </div>
                 </a>
                 <div className="flex items-center gap-4 group">
@@ -120,7 +120,7 @@ const ContactForm = () => {
                   <div>
                     <p className="text-gray-400 text-sm">Location</p>
                     <p className="text-white font-semibold">
-                      123 Cinema Lane, Kolkata, West Bengal
+                      5/64 Netaji Nagar Post Office Regent Park , Tollyguange Netaji Nagar , Netaji Nagar Sub Post Office , Kolkata , West Bengal - 700040
                     </p>
                   </div>
                 </div>
