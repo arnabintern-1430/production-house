@@ -66,6 +66,31 @@ import admin from "../firebase/firebase.js";
 //   }
 // };
 
+export const createUser_withoutToken = async (req, res) => {
+  try {
+    const { name, email, phone, message } = req.body;
+
+    // Check if email already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: "Email already registered" });
+    }
+
+    // Create new user
+    const user = new User({
+      name,
+      email,
+      phone,
+      message,
+    });
+
+    await user.save();
+    res.status(201).json({ message: "User created successfully", user });
+  } catch (error) {
+    console.error("Error creating user:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
 
 export const createUser = async (req, res) => {
     try {
