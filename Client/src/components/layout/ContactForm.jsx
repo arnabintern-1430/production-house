@@ -72,7 +72,7 @@ const ContactForm = () => {
             <div className="flex items-center gap-4">
               <Mail className="w-6 h-6 text-blue-400" />
               <span className="text-gray-300">
-                msEntatiment107@gmail.com
+                msentertainment107@gmail.com
               </span>
             </div>
           </div>
