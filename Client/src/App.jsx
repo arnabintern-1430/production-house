@@ -9,13 +9,11 @@ import Services from "./pages/Services";
 import Projects from "./pages/Projects";
 import Booking from "./pages/Booking";
 
-// ✅ react-toastify import
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ContactPage from "./pages/ContactPage";
 
 function App() {
-  const [count, setCount] = useState(0);
 
   return (
     <div>

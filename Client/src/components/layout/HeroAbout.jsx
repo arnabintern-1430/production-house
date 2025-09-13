@@ -12,7 +12,7 @@ const HeroAbout = () => {
         <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold leading-tight">
           We Don't Just Produce{' '}
           <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-            Entertainment.
+            Entertainment
           </span>
         </h1>
         <p className="mt-6 text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto">

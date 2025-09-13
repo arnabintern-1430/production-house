@@ -6,7 +6,7 @@ const PortfolioComingSoon = () => {
   return (
     <section 
       id="portfolio" 
-      className="bg-black flex items-center justify-center py-40 sm:py-56"
+      className="bg-black flex items-center w-full h-screen justify-center py-40 sm:py-56"
     >
       <motion.div 
         className="text-center px-6"

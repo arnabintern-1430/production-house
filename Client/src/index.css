@@ -1,5 +1,5 @@
 /* Font adding soon */
-
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
 
 *{
@@ -9,4 +9,5 @@
 @theme{
     --color-primary: blue;
     --color-primary-dull: red;
+    --font-logo: "Urbanist", sans-serif;
 }

@@ -6,7 +6,7 @@ const ContactPage = () => {
     window.scrollTo(0, 0);
   }, []);
   return (
-    <div className="bg-black pt-14">
+    <div className="pt-14  bg-gradient-to-br from-black via-gray-900 to-black">
       <ContactForm />
     </div>
   );

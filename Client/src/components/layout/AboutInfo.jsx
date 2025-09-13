@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 const AboutInfo = () => {
   return (
     <motion.section
-      className="bg-black text-white pt-20 sm:pt-24" // Padding ঠিক করা হয়েছে
+      className="bg-black text-white pt-20 pb-10 sm:pt-24"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
@@ -21,8 +21,8 @@ const AboutInfo = () => {
         </div>
         <div className="mt-12 text-lg leading-8 text-gray-300 space-y-6 text-left md:text-justify">
           <p>
-            MS Entatiment Production House Pvt. Ltd. is a premier media and
-            entertainment company committed to discovering, nurturing, and
+            MS Entatiment Production House Private Limited  is a premier media and
+            Entatiment company committed to discovering, nurturing, and
             promoting new talent in the creative industry. With a strong focus
             on music production, talent training, and professional portfolio
             development, we provide a complete platform for aspiring artists to
@@ -33,7 +33,7 @@ const AboutInfo = () => {
             music albums, cinematic video productions, short films, and artist
             showcases. By bridging the gap between emerging talent and
             professional opportunities, we aspire to redefine creativity in the
-            entertainment sector.
+            Entatiment sector.
           </p>
         </div>
       </div>

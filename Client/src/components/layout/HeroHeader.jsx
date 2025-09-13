@@ -35,7 +35,7 @@ const HeroHeader = () => {
         muted
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
-        poster="https://placehold.co/1920x1080/000000/FFFFFF?text=Loading..."
+        poster="public/photos/image.png"
       >
         <source src="https://cdn.pixabay.com/video/2019/09/04/26531-357855224_large.mp4" type="video/mp4" />
         Your browser does not support the video tag.
@@ -55,10 +55,10 @@ const HeroHeader = () => {
           variants={itemVariants}
           className="text-4xl sm:text-6xl lg:text-7xl font-extrabold leading-tight mb-4"
         >
-          Innovative Video{" "}
-          <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+          Creating Stars, Crafting Stories teg line{" "}
+          {/* <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
             Production
-          </span>
+          </span> */}
         </motion.h1>
         <motion.p
           variants={itemVariants}

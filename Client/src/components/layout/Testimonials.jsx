@@ -1,123 +1,98 @@
 import React from "react";
 import { Quote } from "lucide-react";
-import { motion } from "framer-motion";
 
 const Testimonials = () => {
   const testimonialsData = [
-    // ... (same testimonials data as before)
     {
-      name: "Aisha Khan",
+      name: "Subhajit Das",
       company: "CEO, CreativeWorks Inc.",
       review:
-        "Inovix Studio brought our vision to life with stunning cinematic quality. Their attention to detail and creative input were invaluable. Truly a team of professionals.",
-      avatar: "https://i.pravatar.cc/150?img=1",
+        "MS Entatiment Production House Pvt. Ltd. brought our vision to life with stunning cinematic quality. Their attention to detail and creative input were invaluable. Truly a team of professionals.",
+      avatar: "https://i.pravatar.cc/150?img=11",
     },
     {
-      name: "David Chen",
+      name: "Priyanka Sen",
       company: "Marketing Director, TechNova",
       review:
         "The final video exceeded all our expectations. The team was collaborative, responsive, and incredibly talented. We've seen a significant boost in engagement since the launch.",
-      avatar: "https://i.pravatar.cc/150?img=2",
+      avatar: "https://i.pravatar.cc/150?img=12",
     },
     {
-      name: "Maria Rodriguez",
+      name: "Arindam Chatterjee",
       company: "Founder, Evermore Events",
       review:
-        "For event videography, there's no one better. They captured the energy and emotion of our conference perfectly. I couldn't be happier with the results.",
-      avatar: "https://i.pravatar.cc/150?img=3",
+        "For event videography, there's no one better. MS Entatiment Production House Pvt. Ltd. captured the energy and emotion of our conference perfectly. I couldn't be happier with the results.",
+      avatar: "https://i.pravatar.cc/150?img=13",
+    },
+    {
+      name: "Mousumi Roy",
+      company: "Head of Media, BrightWave Studios",
+      review:
+        "From pre-production to final edits, the process was seamless. Their storytelling approach and visual style elevated our brand campaign to the next level. Thanks to MS Entatiment Production House Pvt. Ltd.",
+      avatar: "https://i.pravatar.cc/150?img=14",
+    },
+    {
+      name: "Sayan Mukherjee",
+      company: "Creative Director, Luxe Weddings",
+      review:
+        "MS Entatiment Production House Pvt. Ltd. transformed our wedding videos into cinematic masterpieces. Every emotion, every detail was captured beautifully. Highly recommended!",
+      avatar: "https://i.pravatar.cc/150?img=15",
     },
   ];
 
-  // Animation for the main grid container
-  const gridContainerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.3, // Stagger the cards
-      },
-    },
-  };
-
-  // Animation for each card
-  const cardVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.5,
-        // Stagger the children inside the card
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  // Animation for elements inside the card
-  const cardContentVariants = {
-    hidden: { y: 10, opacity: 0 },
-    visible: { y: 0, opacity: 1 },
-  };
+  const repeatedData = [...testimonialsData, ...testimonialsData];
 
   return (
-    <section
-      id="testimonials"
-      className="pt-20 pb-8 sm:pt-32 sm:pb-12 bg-black"
-    >
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Section Header */}
-        <motion.div /* ... (header animation remains the same) */>
-          {/* ... header content ... */}
-        </motion.div>
+    <section id="testimonials" className="p-8 bg-black overflow-hidden">
+      <h2 className="text-white text-3xl font-bold mb-6 text-center">
+        Testimonials
+      </h2>
 
-        {/* Testimonials Grid */}
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          variants={gridContainerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-        >
-          {testimonialsData.map((testimonial) => (
-            <motion.div
-              key={testimonial.name}
-              className="relative bg-[#111827] border border-gray-800 p-8 rounded-2xl shadow-lg flex flex-col h-full overflow-hidden" // Added overflow-hidden
-              variants={cardVariants}
+      <div className="relative w-full overflow-hidden">
+        <div className="flex animate-scroll">
+          {repeatedData.map((testimonial, index) => (
+            <div
+              key={index}
+              className="min-w-[300px] max-w-[300px] m-4 bg-[#111827] border border-gray-800 p-6 rounded-2xl shadow-lg flex-shrink-0"
             >
-              <motion.div variants={cardContentVariants}>
-                <Quote className="absolute top-6 left-6 w-12 h-12 text-gray-700 opacity-50" />
-              </motion.div>
-
-              <div className="relative z-10 flex flex-col h-full">
-                <motion.p
-                  className="text-gray-300 italic text-lg flex-grow mb-6 pt-12" // Added padding-top to not overlap quote
-                  variants={cardContentVariants}
-                >
-                  "{testimonial.review}"
-                </motion.p>
-                <motion.div
-                  className="flex items-center mt-auto"
-                  variants={cardContentVariants}
-                >
-                  <img
-                    src={testimonial.avatar}
-                    alt={testimonial.name}
-                    className="w-14 h-14 rounded-full border-2 border-blue-500 object-cover"
-                  />
-                  <div className="ml-4">
-                    <p className="font-semibold text-white text-lg">
-                      {testimonial.name}
-                    </p>
-                    <p className="text-sm text-gray-400">
-                      {testimonial.company}
-                    </p>
-                  </div>
-                </motion.div>
+              <Quote className="w-8 h-8 text-gray-700 opacity-50 mb-4" />
+              <p className="text-gray-300 italic text-sm mb-4">
+                "{testimonial.review}"
+              </p>
+              <div className="flex items-center">
+                <img
+                  src={testimonial.avatar}
+                  alt={testimonial.name}
+                  className="w-12 h-12 rounded-full border-2 border-blue-500 object-cover"
+                />
+                <div className="ml-3">
+                  <p className="font-semibold text-white text-base">
+                    {testimonial.name}
+                  </p>
+                  <p className="text-xs text-gray-400">{testimonial.company}</p>
+                </div>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
+
+      {/* CSS animation */}
+      <style jsx>{`
+        @keyframes scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        .animate-scroll {
+          display: flex;
+          width: max-content;
+          animation: scroll 30s linear infinite;
+        }
+      `}</style>
     </section>
   );
 };
