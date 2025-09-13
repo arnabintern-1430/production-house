@@ -137,7 +137,7 @@ const Header = () => {
       </div>
 
       {/* Hidden Audio Player */}
-      <audio ref={audioRef} src="public/Audio/audo_production.mp3" loop autoPlay hidden />
+      <audio ref={audioRef} src="Audio/audo_production.mp3" loop autoPlay hidden />
     </header>
   );
 };
