@@ -55,7 +55,7 @@ const HeroHeader = () => {
           variants={itemVariants}
           className="text-4xl sm:text-6xl lg:text-7xl font-extrabold leading-tight mb-4"
         >
-          Creating Stars, Crafting Stories teg line{" "}
+          Creating Stars, Crafting Stories{" "}
           {/* <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
             Production
           </span> */}
