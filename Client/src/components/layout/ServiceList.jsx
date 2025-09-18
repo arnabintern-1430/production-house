@@ -1,11 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
+import { motion } from "framer-motion";
 import { Camera, CalendarDays, UserCheck, Sparkles, ArrowRight } from "lucide-react";
 import CustomButton from "../ui/CustomButton";
 import { useAppContext } from "../../context/AppContext";
 
 const ServiceList = () => {
   const { navigate } = useAppContext();
-  const cardsRef = useRef([]);
 
   const services = [
     {
@@ -42,92 +42,59 @@ const ServiceList = () => {
     },
   ];
 
-  // IntersectionObserver for animation
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate-show");
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    cardsRef.current.forEach((el) => {
-      if (el) observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <section className="py-20 sm:py-32 bg-black">
       <div className="max-w-7xl mx-auto px-6 space-y-20">
-        {services.map((service, index) => (
-          <div
-            key={index}
-            ref={(el) => (cardsRef.current[index] = el)}
-            className="relative bg-gradient-to-br from-[#111827] to-gray-900 p-6 sm:p-10 lg:p-12 rounded-3xl border border-purple-500/50 shadow-2xl shadow-purple-500/20 overflow-hidden opacity-0 translate-y-12 transition-all duration-700"
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center relative z-10">
-              
-              {/* Image (mobile first: top, desktop: right) */}
-              <div className="relative h-56 sm:h-72 md:h-80 lg:h-full min-h-[250px] order-1 lg:order-2">
-                <img
-                  src={service.bg_img}
-                  alt={service.title}
-                  className="w-full h-full object-cover rounded-2xl opacity-30 lg:opacity-20"
-                />
-              </div>
+        {services.map((service, index) => {
+          const isLeft = index % 2 === 0;
 
-              {/* Text */}
-              <div className="order-2 lg:order-1">
-                <div className="flex items-center gap-6 mb-6">
-                  <div className="bg-gray-800 p-4 rounded-full border-2 border-purple-500">
-                    {service.icon}
-                  </div>
-                  <h2 className="text-3xl lg:text-4xl font-bold text-white">
-                    {service.title}
-                  </h2>
+          return (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, x: isLeft ? -100 : 100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false, amount: 0.2 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="relative bg-gradient-to-br from-[#111827] to-gray-900 p-6 sm:p-10 lg:p-12 rounded-3xl border border-purple-500/50 shadow-2xl shadow-purple-500/20 overflow-hidden"
+            >
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center relative z-10">
+                {/* Image */}
+                <div className="relative h-56 sm:h-72 md:h-80 lg:h-full min-h-[250px] order-1 lg:order-2">
+                  <img
+                    src={service.bg_img}
+                    alt={service.title}
+                    className="w-full h-full object-cover rounded-2xl opacity-30 lg:opacity-20"
+                  />
                 </div>
-                <p className="text-gray-300 text-lg leading-relaxed mb-8">
-                  {service.description}
-                </p>
-                <CustomButton
-                  variant="primary"
-                  onClick={() => navigate("/contact")}
-                  className="!text-lg !py-4 !px-8"
-                >
-                  <div className="flex items-center justify-center gap-2">
-                    Book Now <ArrowRight size={20} />
-                  </div>
-                </CustomButton>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
 
-      {/* Animation CSS */}
-      <style jsx>{`
-        @keyframes fadeSlideUp {
-          0% {
-            opacity: 0;
-            transform: translateY(40px);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-show {
-          opacity: 1 !important;
-          transform: translateY(0) !important;
-          animation: fadeSlideUp 0.8s ease-out forwards;
-        }
-      `}</style>
+                {/* Text */}
+                <div className="order-2 lg:order-1">
+                  <div className="flex items-center gap-6 mb-6">
+                    <div className="bg-gray-800 p-4 rounded-full border-2 border-purple-500">
+                      {service.icon}
+                    </div>
+                    <h2 className="text-3xl lg:text-4xl font-bold text-white">
+                      {service.title}
+                    </h2>
+                  </div>
+                  <p className="text-gray-300 text-lg leading-relaxed mb-8">
+                    {service.description}
+                  </p>
+                  <CustomButton
+                    variant="primary"
+                    onClick={() => navigate("/contact")}
+                    className="!text-lg !py-4 !px-8"
+                  >
+                    <div className="flex items-center justify-center gap-2">
+                      Book Now <ArrowRight size={20} />
+                    </div>
+                  </CustomButton>
+                </div>
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
     </section>
   );
 };

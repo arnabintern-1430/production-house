@@ -22,22 +22,22 @@ const Whoare = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
-              Who We Are, What Actually Do
+              Who We Are, What We Actually Do
             </h2>
             <p className="text-gray-300 text-lg leading-relaxed">
-              MS Entatiment Production House Pvt. Ltd. is a premier media and
-              Entatiment company committed to discovering, nurturing, and
+              MS Entertainment Production House Pvt. Ltd. is a premier media and
+              Entertainment company committed to discovering, nurturing, and
               promoting new talent in the creative industry. With a strong focus
               on music production, talent training, and professional portfolio
               development, we provide a complete platform for aspiring artists
               to begin and grow their careers.
             </p>
             <p className="text-gray-300 text-lg leading-relaxed">
-              Our in-house production facilities enable us to deliver world-class
-              music albums, cinematic video productions, short films, and artist
-              showcases. By bridging the gap between emerging talent and
-              professional opportunities, we aspire to redefine creativity in the
-              Entatiment sector.
+              Our in-house production facilities enable us to deliver
+              world-class music albums, cinematic video productions, short
+              films, and artist showcases. By bridging the gap between emerging
+              talent and professional opportunities, we aspire to redefine
+              creativity in the Entertainment sector.
             </p>
           </motion.div>
 

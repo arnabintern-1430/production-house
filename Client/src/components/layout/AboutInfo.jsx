@@ -21,8 +21,8 @@ const AboutInfo = () => {
         </div>
         <div className="mt-12 text-lg leading-8 text-gray-300 space-y-6 text-left md:text-justify">
           <p>
-            MS Entatiment Production House Private Limited  is a premier media and
-            Entatiment company committed to discovering, nurturing, and
+            MS Entertainment Production House Private Limited is a premier media
+            and Entertainment company committed to discovering, nurturing, and
             promoting new talent in the creative industry. With a strong focus
             on music production, talent training, and professional portfolio
             development, we provide a complete platform for aspiring artists to
@@ -33,7 +33,7 @@ const AboutInfo = () => {
             music albums, cinematic video productions, short films, and artist
             showcases. By bridging the gap between emerging talent and
             professional opportunities, we aspire to redefine creativity in the
-            Entatiment sector.
+            Entertainment sector.
           </p>
         </div>
       </div>

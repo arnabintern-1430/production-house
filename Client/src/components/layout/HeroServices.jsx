@@ -1,5 +1,4 @@
 import React from 'react';
-import { ChevronDown } from 'lucide-react';
 
 const HeroServices = () => {
   return (
@@ -25,11 +24,6 @@ const HeroServices = () => {
         >
           From concept to creation, we offer a complete range of professional services to bring your vision to life.
         </p>
-      </div>
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
-          <div className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-600 animate-bounce">
-              <ChevronDown className="w-6 h-6 text-gray-400" />
-          </div>
       </div>
     </section>
   );

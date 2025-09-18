@@ -11,7 +11,7 @@ const navLinks = [
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
+  const [isMuted, setIsMuted] = useState(true); // শুরুর সময় muted
   const audioRef = useRef(null);
   const navigate = useNavigate();
 
@@ -23,21 +23,30 @@ const Header = () => {
     };
   }, [isOpen]);
 
-  // Auto play audio when component mounts
+  // Try to play audio on load (muted mode allowed by browser)
   useEffect(() => {
     if (audioRef.current) {
+      audioRef.current.muted = true; // প্রথমে muted রাখি
       audioRef.current.play().catch(() => {
-        // Autoplay restrictions (browser blocks without user interaction)
         console.log("Autoplay blocked until user interacts.");
       });
     }
   }, []);
 
   const toggleMenu = () => setIsOpen(!isOpen);
+
   const toggleMute = () => {
     if (audioRef.current) {
-      audioRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
+      if (isMuted) {
+        audioRef.current.muted = false;
+        setIsMuted(false);
+        audioRef.current.play().catch(() => {
+          console.log("Play failed until user interacts.");
+        });
+      } else {
+        audioRef.current.muted = true;
+        setIsMuted(true);
+      }
     }
   };
 
@@ -49,7 +58,11 @@ const Header = () => {
           onClick={() => navigate("/")}
           className="flex items-center space-x-0 cursor-pointer"
         >
-          <img src="/photos/ms_logo.png" className="w-15" alt="MS Entertainment" />
+          <img
+            src="/photos/ms_logo.png"
+            className="w-15"
+            alt="MS Entertainment"
+          />
           <span className="text-white text-2xl md:text-3xl font-logo font-extrabold tracking-wide">
             <span className="text-blue-500">MS</span> Entertainment
           </span>
@@ -137,7 +150,13 @@ const Header = () => {
       </div>
 
       {/* Hidden Audio Player */}
-      <audio ref={audioRef} src="/Audio/audo_production.mp3" loop autoPlay hidden />
+      <audio
+        ref={audioRef}
+        src="/Audio/audo_production.mp3"
+        loop
+        autoPlay
+        hidden
+      />
     </header>
   );
 };
